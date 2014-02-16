@@ -1,5 +1,9 @@
 {
   "user": "vyatta@0.0.0.0",
   "identity": "/home/wataken44/.ssh/vyatta.id_rsa",
-  "configure_script": "configure.sh -c"
+  "configure_script": "configure.sh -c",
+  "update_outside_interface_accept_ra": {
+    "interface" : "eth1"
+  }
+
 }

@@ -20,8 +20,7 @@ def load_config()
     return json
 end
 
-def main()
-    config = load_config()
+def update_l2tp_outside_address(config)
     user = config["user"]
     identity = config["identity"]
     script = config["configure_script"]
@@ -32,6 +31,22 @@ def main()
     command = "ssh %s -i %s '%s set vpn l2tp remote-access outside-address %s'" % [user, identity, script, addr]
 
     system(command)
+end
+
+def update_outside_interface_accept_ra(config)
+    user = config["user"]
+    identity = config["identity"]
+    outside_interface = config["update_outside_interface_accept_ra"]["interface"]
+
+    command = "ssh %s -i %s 'echo 2 | sudo tee /proc/sys/net/ipv6/conf/%s/accept_ra'" % [user, identity, outside_interface]
+    system(command)
+end
+
+def main()
+    config = load_config()
+
+    update_l2tp_outside_address(config)
+    update_outside_interface_accept_ra(config)
 end
 
 if __FILE__ == $0 then
