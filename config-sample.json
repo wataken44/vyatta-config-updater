@@ -1,9 +1,19 @@
 {
-  "user": "vyatta@0.0.0.0",
-  "identity": "/home/wataken44/.ssh/vyatta.id_rsa",
-  "configure_script": "configure.sh -c",
-  "update_outside_interface_accept_ra": {
+  "base": {
+    "user": "vyos@0.0.0.0",
+    "identity": "/home/wataken44/.ssh/id_rsa",
+    "remote_script": {
+      "configure": "configure.sh -c",
+      "command": "command.sh"
+    },
+    "command": [
+      "update_l2tp",
+      "update_ipv6"
+    ]
+  },
+  "update_ipv6": {
     "interface" : "eth1"
+  },
+  "update_l2tp": {
   }
-
 }
