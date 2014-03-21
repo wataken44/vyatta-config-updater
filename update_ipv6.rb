@@ -7,7 +7,7 @@ require 'open-uri'
 require 'ipaddr'
 require 'resolv'
 
-require './utility.rb'
+require_relative './utility.rb'
 
 def get_outside_address_ipv6(config)
     user = config["base"]["user"]
@@ -47,6 +47,7 @@ def main()
     config = load_config()
 
     update_outside_interface_accept_ra(config)
+    puts get_outside_address_ipv6(config)
 end
 
 if __FILE__ == $0 then

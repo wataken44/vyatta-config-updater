@@ -4,7 +4,7 @@
 # update.rb
 
 require 'json'
-require './utility.rb'
+require_relative './utility.rb'
 
 def main()
     config = load_config()
